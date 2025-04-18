@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("care-connection-device-diagnosis.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+    .result {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    img {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .guides {
+      text-align: left;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prediction Result</h1>
+    <p id="condition"></p>
+    <img id="result-image" src="" alt="Result Image">
+    <div class="result" id="result"></div>
+    <div class="guides" id="guides"></div>
+    <button onclick="goBack()">Go Back</button>
+  </div>
+  <script>
+    // Retrieve the prediction from localStorage
+    const prediction = localStorage.getItem("prediction");
+    const condition = localStorage.getItem("condition");
+
+    document.getElementById("condition").textContent = `Condition: ${condition}`;
+    document.getElementById("result").textContent = `Result: ${prediction}`;
+
+    // Set the image based on prediction
+    const resultImage = document.getElementById("result-image");
+    const guidesDiv = document.getElementById("guides");
+
+    if (prediction === "Positive") {
+      resultImage.src = "download (1).jpeg"; // Replace with your image path
+      guidesDiv.innerHTML = `
+        <h3>Guides for Improvement:</h3>
+        <ul>
+          <li>Maintain a healthy diet rich in fruits and vegetables.</li>
+          <li>Exercise regularly to strengthen your body.</li>
+          <li>Monitor your health parameters and consult a doctor if needed.</li>
+        </ul>
+      `;
+    } else {
+      resultImage.src = "download (3).jpeg"; // Replace with your image path
+      guidesDiv.innerHTML = `
+        <h3>Guides for Improvement:</h3>
+        <ul>
+          <li>Incorporate a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats into your meals to provide essential nutrients and boost overall health.</li>
+          <li>Exercise regularly to strengthen your body.</li>
+          <li>Monitor your health parameters and consult a doctor if needed.</li>
+          <li> Aim for 7–8 hours of quality sleep each night and drink sufficient water throughout the day to support bodily functions and enhance mental clarity.</li>
+        </ul>
+      `;
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
